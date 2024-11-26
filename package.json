@@ -1,0 +1,19 @@
+{
+  "name": "tokunbor",
+  "version": "1.0.0",
+  "description": "reads texts out loud",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm start",
+    "server": "cd server && npm run start:watch",
+    "dev": "npm run client & npm run server"
+  },
+  "keywords": [
+    "text-to-speech"
+  ],
+  "author": "Umaru S. Biango",
+  "license": "MIT ",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
