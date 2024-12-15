@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser')
 //Routes
 const userRoutes = require('./routes/userRoutes')
 const historyRoutes = require('./routes/historyRoutes')
+const ttsRoutes = require('./routes/ttsRoutes')
 
 dotenv.config()
 const app = express()
@@ -25,6 +26,7 @@ app.use(cookieParser())
 // Routes
 app.use("/api/users", userRoutes)
 app.use("/api/history", historyRoutes)
+app.use("/api/tts", ttsRoutes)
 
 app.get("/", (req, res) => {
     res.send("Hello from Tokunbor server backend.")

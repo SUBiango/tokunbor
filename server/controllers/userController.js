@@ -120,11 +120,11 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @route DELETE /api/users/:id
 // @access Private
 const deleteUser = asyncHandler(async (req, res) => {
-    // const user = await User.findById(req.user._id)
+    const user = await User.findById(req.user._id)
 
-    // if (user) {
-    //     await user.remove()
-    // }
+    if (user) {
+        await user.remove()
+    }
     res.status(200).json({ message: "User deleted" });
 })
 
