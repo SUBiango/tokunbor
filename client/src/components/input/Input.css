@@ -1,0 +1,23 @@
+.input {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+}
+
+textarea {
+    resize: none;
+    height: 100%;
+}
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+    .input {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    textarea {
+        height: 15rem;
+    }
+}

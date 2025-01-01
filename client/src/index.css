@@ -1,4 +1,16 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-}
+  font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 
+  /* Colors */
+  --white: #fff;
+  --gray: #aaa;
+  --light-gray: #ccc;
+  --black: #333;
+  --primary: #7C6A0A;
+  --secondary: #BABD8D;
+  --background: #eee;
+  --button-text-hover: #d9dca4;
+  --button-background-hover: #94800c;
+}

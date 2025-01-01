@@ -1,0 +1,11 @@
+.convertBtn {
+    width: 100%;
+    background-color: var(--primary);
+    color: var(--secondary);
+
+    &:hover {
+        background-color: var(--button-background-hover);
+        color: var(--button-text-hover);
+    }
+}
+

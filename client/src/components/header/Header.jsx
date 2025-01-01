@@ -1,10 +1,15 @@
 import { BsFillPersonFill } from "react-icons/bs";
+import "./Header.css"
 
 function Header () {
     return (
-        <div>
-            <h1>Tokunbor</h1>
-            <BsFillPersonFill />
+        <div className="header-container">
+            <nav className="container header-content">
+                <ul>
+                    <li><strong>Tokunbor</strong></li>
+                </ul>
+                <ul><li><BsFillPersonFill /></li></ul>
+            </nav>
         </div>
     )
 }

@@ -1,0 +1,11 @@
+.play-bar {
+    padding: 1rem;
+    background-color: var(--white); /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-bottom: 1rem;
+  }
+
+  .audio {
+    width: 100%; /* Full width of container */
+  }
