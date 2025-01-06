@@ -3,6 +3,7 @@ import { getTTS } from '../../services/ttsService'
 import Button from '../button/Button'
 import PlayBar from '../play-bar/PlayBar'
 import './Input.css'
+import useTTSStore from '../../store/ttsStore'
 
 export function InputSettings() {
     return (
@@ -49,9 +50,8 @@ export function Textarea() {
 }
 
 function TextInput() {
-    const [text, setText] = useState('')
-    const [language, setLanguage] = useState('en-US')
-    const [voice, setVoice] = useState('en-US-Wavenet-D')
+    const text = useTTSStore((state) => state.text)
+    const setText = useTTSStore((state) => state.setText)
 
     const handleConvert = async () => {
         try {
