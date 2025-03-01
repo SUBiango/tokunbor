@@ -1,8 +1,10 @@
 const express = require("express")
 const router = express.Router()
 
-const { textToSpeech } = require("../controllers/ttsController")
+const { convertTTS } = require("../controllers/ttsController")
+const { listVoices } = require("../controllers/ttsController")
 
-router.post("/convert", textToSpeech)
+router.post("/convert", convertTTS)
+router.get("/voices", listVoices)
 
 module.exports = router

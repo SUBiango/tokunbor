@@ -3,7 +3,7 @@ import { create } from "zustand";
 const useTTSStore = create((set) => ({
     text: '',
     language: 'en-US',
-    voice: 'en-US-Wavenet-D',
+    voice: '',
     speed: 1,
     audioUrl: null,
     setText: (text) => set({ text }),

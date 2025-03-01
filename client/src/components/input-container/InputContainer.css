@@ -1,19 +1,14 @@
-.input {
+.input-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 4rem;
     margin-bottom: 5rem;
 }
 
-textarea {
-    resize: none;
-    height: 100%;
-}
-
 /* Media Queries */
 
 @media (max-width: 768px) {
-    .input {
+    .input-container {
         grid-template-columns: 1fr;
         gap: 2rem;
     }

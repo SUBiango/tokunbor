@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const api = axios.create({
-    baseURL: "http://localhost:3000",
+const ttsApi = axios.create({
+    baseURL: "http://localhost:5000/api/tts",
     headers: {
         "Content-Type": "application/json",
     },
 })
 
-export default api
+export default ttsApi

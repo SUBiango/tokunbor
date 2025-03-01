@@ -24,11 +24,6 @@ async function convertTextToSpeech(text, language = "en-US", voice = "en-US-Wave
     // Perform the text-to-speech request
     const [response] = await client.synthesizeSpeech(request)
 
-    // Save audio file to disk
-    const writeFile = util.promisify(fs.writeFile)
-    const fileName = 'output.mp3'
-    await writeFile(fileName, response.audioContent, 'binary')
-    console.log(`Audio content written to file ${fileName}`)
 
     // Return audio content 
     return response.audioContent

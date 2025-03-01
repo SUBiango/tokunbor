@@ -7,7 +7,7 @@ const History = require('./models/History')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 
-//Routes
+// Import Routes
 const userRoutes = require('./routes/userRoutes')
 const historyRoutes = require('./routes/historyRoutes')
 const ttsRoutes = require('./routes/ttsRoutes')
@@ -23,16 +23,17 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 
-// Routes
+// Route Mount
 app.use("/api/users", userRoutes)
 app.use("/api/history", historyRoutes)
 app.use("/api/tts", ttsRoutes)
 
+// Default Route
 app.get("/", (req, res) => {
     res.send("Hello from Tokunbor server backend.")
 })
 
-// Custom error
+// Custom Error
 app.use(notFound)
 app.use(errorHandler)
 

@@ -1,0 +1,12 @@
+textarea {
+    resize: none;
+    height: 100%;
+}
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+    textarea {
+        height: 10rem;
+    }
+}
