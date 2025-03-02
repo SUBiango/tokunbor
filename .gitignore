@@ -3,3 +3,4 @@ client/node_modules/
 server/node_modules/
 .env
 server/config/key.json
+config/key.json
