@@ -4,7 +4,7 @@
   "description": "reads texts out loud",
   "main": "index.js",
   "scripts": {
-    "client": "cd client && npm start",
+    "client": "cd client && npm run start",
     "server": "cd server && npm run start:watch",
     "dev": "npm run client & npm run server"
   },
@@ -14,6 +14,6 @@
   "author": "Umaru S. Biango",
   "license": "MIT ",
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.7"
   }
 }

@@ -18,6 +18,7 @@ import "./PlayButton.css"
 function PlayButton() {
     const { mutate, isLoading, error } = useTtsMutation()
     const text = useTTSStore((state) => state.text)
+    const voice = useTTSStore((state) => state.voice)
     const setAudioUrl = useTTSStore((state) => state.setAudioUrl)
 
     const handlePlay = async () => {
@@ -28,8 +29,8 @@ function PlayButton() {
 
         const payload = { 
             text, 
-            language: 'en-US', 
-            voice: 'en-US-Wavenet-D', 
+            language: 'en-GB', 
+            voice, 
             speakingRate: 1.0 
         }
 

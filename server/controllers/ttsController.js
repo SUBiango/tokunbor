@@ -26,12 +26,13 @@ const listVoices = asyncHandler(async (req, res) => {
     const [result] = await client.listVoices({}) 
 
     const voices = result.voices
-        .filter(voice => voice.languageCodes.some(lang => lang.startsWith('en-')))
+        .filter(voice => voice.languageCodes.some(lang => lang.startsWith('en-GB')))
+        .slice(0, 2)
         .map(voice => ({ 
             name: voice.name, 
             gender: voice.ssmlGender
         }))
-        // console.log(voices)
+        console.log(voices)
     res.status(200).json({ voices, language: 'English' })
 })
 

@@ -1,5 +1,6 @@
 const dotenv = require('dotenv')
 const express = require('express')
+const path = require('path')
 const connectDB = require('./config/db')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 const User = require('./models/User')
@@ -12,7 +13,7 @@ const userRoutes = require('./routes/userRoutes')
 const historyRoutes = require('./routes/historyRoutes')
 const ttsRoutes = require('./routes/ttsRoutes')
 
-dotenv.config()
+dotenv.config({ path: path.resolve(__dirname, '../.env') })
 const app = express()
 const PORT = process.env.PORT || 3000
 connectDB()

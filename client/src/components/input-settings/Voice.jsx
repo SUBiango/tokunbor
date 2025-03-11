@@ -18,7 +18,7 @@ export function Voice () {
                     name="favorite-cuisine" 
                     aria-label="Select voice"
                     >
-                    <option  value="" disabled selected>
+                    <option  value="select" disabled>
                         Select voice
                     </option>
 
@@ -26,8 +26,10 @@ export function Voice () {
                         <option 
                             key={voice.name}  
                             value={voice.name} 
-                            disabled
-                        > {voice.name} </option>
+                            data-gender={voice.gender}
+                        > 
+                            {(voice.gender).toLowerCase()} 
+                        </option>
                     ))}
                 </select>
             </div>
