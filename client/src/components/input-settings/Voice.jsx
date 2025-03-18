@@ -28,7 +28,7 @@ export function Voice () {
                             value={voice.name} 
                             data-gender={voice.gender}
                         > 
-                            {(voice.gender).toLowerCase()} 
+                            {(voice.gender).charAt(0).toUpperCase() + (voice.gender).slice(1).toLowerCase()} 
                         </option>
                     ))}
                 </select>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import useTTSStore from '../../store/ttsStore'
 import { useTtsMutation } from '../../services/ttsService'
+import Loader from '../spinner/Loader'
 import "./PlayButton.css"
 
 /**
@@ -54,7 +55,7 @@ function PlayButton() {
     return (
         <>
             <button className="convertBtn" onClick={handlePlay} disabled={isLoading}>
-                {isLoading ? 'Converting...' : 'Convert & Play'}
+                {isLoading ? <Loader /> : 'Convert & Play'}
             </button>
             {error && <p>Error: {error.message}</p>}
         </>

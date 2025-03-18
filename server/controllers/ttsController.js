@@ -32,7 +32,6 @@ const listVoices = asyncHandler(async (req, res) => {
             name: voice.name, 
             gender: voice.ssmlGender
         }))
-        console.log(voices)
     res.status(200).json({ voices, language: 'English' })
 })
 
