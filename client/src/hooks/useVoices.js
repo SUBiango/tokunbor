@@ -3,7 +3,6 @@ import ttsApi from '../utils/ttsApi'
 
 const fetchVoices = async () => {
     const { data } = await ttsApi.get('/voices')
-    console.log(data.voices)
     return data.voices
 }
 

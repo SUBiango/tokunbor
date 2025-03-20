@@ -3,7 +3,7 @@ import useTTSStore from '../../store/ttsStore'
 
 export function Voice () {
     const { data: voices, isLoading, error } = useVoices()
-    const { voice, setVoice } = useTTSStore()
+    const { voice, setVoice, speed, setSpeed } = useTTSStore()
 
     if (isLoading) return 'Loading...'
     if (error) return 'Failed to load voices'
@@ -35,8 +35,15 @@ export function Voice () {
             </div>
             <div>
             <label>
-                Speed
-                <input type="range" />
+                Speed: {speed}
+                <input 
+                    type="range" 
+                    min="0.5"
+                    max="2.0"
+                    step="0.1"
+                    value={speed}
+                    onChange={(e) => setSpeed(parseFloat(e.target.value))}
+                />
                 </label>
             </div>
         </div>

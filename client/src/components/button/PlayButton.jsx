@@ -20,6 +20,7 @@ function PlayButton() {
     const { mutate, isLoading, error } = useTtsMutation()
     const text = useTTSStore((state) => state.text)
     const voice = useTTSStore((state) => state.voice)
+    const speed = useTTSStore((state) => state.speed)
     const setAudioUrl = useTTSStore((state) => state.setAudioUrl)
 
     const handlePlay = async () => {
@@ -32,7 +33,7 @@ function PlayButton() {
             text, 
             language: 'en-GB', 
             voice, 
-            speakingRate: 1.0 
+            speakingRate: speed 
         }
 
         mutate(payload, {

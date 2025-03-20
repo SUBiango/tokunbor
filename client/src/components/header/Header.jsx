@@ -6,9 +6,9 @@ function Header () {
         <div className="header-container">
             <nav className="container header-content">
                 <ul>
-                    <li><strong>Tokunbor</strong></li>
+                    <li><strong><a href="#">Tokunbor</a></strong></li>
                 </ul>
-                <ul><li><BsFillPersonFill /></li></ul>
+                <ul><li><a href="#"><BsFillPersonFill /></a></li></ul>
             </nav>
         </div>
     )

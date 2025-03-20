@@ -4,7 +4,7 @@ const useTTSStore = create((set) => ({
     text: '',
     language: 'en-US',
     voice: '',
-    speed: 1,
+    speed: 1.0,
     audioUrl: null,
     setText: (text) => set({ text }),
     setLanguage: (language) => set({ language }),
