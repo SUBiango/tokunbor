@@ -18,9 +18,6 @@ export function Voice () {
                     name="favorite-cuisine" 
                     aria-label="Select voice"
                     >
-                    <option  value="select" disabled>
-                        Select voice
-                    </option>
 
                     {voices.map(voice => (
                         <option 
@@ -28,7 +25,7 @@ export function Voice () {
                             value={voice.name} 
                             data-gender={voice.gender}
                         > 
-                            {(voice.gender).charAt(0).toUpperCase() + (voice.gender).slice(1).toLowerCase()} 
+                            {(voice.gender).charAt(0).toUpperCase() + (voice.gender).slice(1).toLowerCase()}
                         </option>
                     ))}
                 </select>

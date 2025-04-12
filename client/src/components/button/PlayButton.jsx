@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
 import useTTSStore from '../../store/ttsStore'
 import { useTtsMutation } from '../../services/ttsService'
 import Loader from '../spinner/Loader'
 import "./PlayButton.css"
+import { useVoices } from '../../hooks/useVoices'
+import { useEffect } from 'react'
 
 /**
  * PlayButton component renders a button that converts text to speech and plays the audio.
@@ -21,7 +22,17 @@ function PlayButton() {
     const text = useTTSStore((state) => state.text)
     const voice = useTTSStore((state) => state.voice)
     const speed = useTTSStore((state) => state.speed)
+    const notify = useTTSStore((state) => state.notification)
     const setAudioUrl = useTTSStore((state) => state.setAudioUrl)
+    const setVoice = useTTSStore((state) => state.setVoice)
+
+    const { data: voices } = useVoices()
+
+    useEffect(() => {
+        if (voices && voices.length > 0) {
+            setVoice(voices[0].name)
+        }
+    }, [voices, setVoice])
 
     const handlePlay = async () => {
         if (!text.trim()) {

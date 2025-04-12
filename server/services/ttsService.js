@@ -5,16 +5,18 @@ const util = require('util');
 // Create a client 
 const client = new textToSpeech.TextToSpeechClient();
 
+
 /**
- * Converts text to speech using the Google Cloud Text-to-Speech API.
- * 
- * @param {string} text - The text to be converted to speech.
- * @param {string} [language="en-US"] - The language code for the desired language (default: "en-US").
- * @param {string} [name="en-US-Wavenet-D"] - The name of the voice to be used for speech synthesis (default: "en-US-Wavenet-D").
- * @param {number} [speakingRate=1.0] - The speaking rate for the synthesized speech (default: 1.0).
- * @returns {Promise<Buffer>} - A promise that resolves to the audio content in MP3 format as a Buffer.
+ * Converts text to speech using Google Cloud Text-to-Speech API.
+ *
+ * @param {string} text - The text to be converted into speech.
+ * @param {string} language - The language code (e.g., 'en-US') for the desired voice.
+ * @param {string} voice - The specific voice to be used for the conversion.
+ * @param {number} speakingRate - The speaking rate for the voice. 
+ * @returns {Promise<Buffer>} - A promise that resolves to the audio content in MP3 format.
  */
-async function convertTextToSpeech(text, language = "en-US", voice = "en-US-Wavenet-D", speakingRate = 1.0) {
+
+async function convertTextToSpeech(text, language, voice, speakingRate) {
     const request = {
         input: { text: text },
         voice: { languageCode: language, name: voice },

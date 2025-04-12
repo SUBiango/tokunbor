@@ -6,11 +6,13 @@ const useTTSStore = create((set) => ({
     voice: '',
     speed: 1.0,
     audioUrl: null,
+    notification: "Please enter text to convert",
     setText: (text) => set({ text }),
     setLanguage: (language) => set({ language }),
     setVoice: (voice) => set({ voice }),
     setSpeed: (speed) => set({ speed }),
-    setAudioUrl: (audioUrl) => set({ audioUrl })
+    setAudioUrl: (audioUrl) => set({ audioUrl }),
+    setNotification: (notification) => set({notification})
 }))
 
 export default useTTSStore
