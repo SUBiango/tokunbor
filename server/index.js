@@ -15,9 +15,9 @@ const userRoutes = require('./routes/userRoutes')
 const historyRoutes = require('./routes/historyRoutes')
 const ttsRoutes = require('./routes/ttsRoutes')
 
-dotenv.config({ path: path.resolve(__dirname, '../.env') }) // Load environment variables
+dotenv.config() // Load environment variables
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 connectDB()
 
 const RateLimit = require("express-rate-limit")
@@ -28,7 +28,10 @@ const limiter = RateLimit({
 })
 
 // Middleware 
-app.use(cors()) // Enable CORS
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+})) // Enable CORS
 app.use(express.json()) // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })) // Parse URL-encoded bodies
 app.use(cookieParser()) // Parse cookies
