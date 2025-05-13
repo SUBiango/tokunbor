@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const ttsApi = axios.create({
-    baseURL: "http://localhost:8000/api/tts",
+    baseURL: import.meta.env.VITE_API_URL,
+    withCredentials: true,
     headers: {
         "Content-Type": "application/json",
     },

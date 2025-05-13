@@ -27,11 +27,25 @@ const limiter = RateLimit({
     message: "Too many requests from this IP, please try again after 15 minutes"
 })
 
+const corsOptions = {
+    origin: function (origin, callback) {
+        const allowedOrigins = [
+            'http://localhost:5173', // React app URL
+            process.env.CLIENT_URL_DEV, // Development URL
+            process.env.CLIENT_URL_PROD, // Production URL
+        ]
+
+        if (allowedOrigins.includes(origin)) {
+            callback(null, true) // Allow the request
+        } else {
+            callback(new Error('Not allowed by CORS')) // Block the request
+        }
+    },
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+}
+
 // Middleware 
-app.use(cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true,
-})) // Enable CORS
+app.use(cors(corsOptions)) // Enable CORS
 app.use(express.json()) // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })) // Parse URL-encoded bodies
 app.use(cookieParser()) // Parse cookies

@@ -7,7 +7,7 @@ export default defineConfig({
 
   server: {
     proxy: {
-      '/api': {
+      '/api/tts': {
         target: 'http://localhost:8000',  // Backend server URL
         changeOrigin: true,               // Ensures the host header is changed to match the target
         secure: false,                    // If using https on localhost, set this to false
