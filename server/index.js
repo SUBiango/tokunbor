@@ -29,15 +29,21 @@ const limiter = RateLimit({
 
 const corsOptions = {
     origin: function (origin, callback) {
+        console.log('Request origin:', origin)
         const allowedOrigins = [
             'http://localhost:5173', // React app URL
             process.env.CLIENT_URL_DEV, // Development URL
             process.env.CLIENT_URL_PROD, // Production URL
         ]
 
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true)
+        
+
         if (allowedOrigins.includes(origin)) {
             callback(null, true) // Allow the request
         } else {
+            console.warn(`CORS error: ${origin} is not allowed`)
             callback(new Error('Not allowed by CORS')) // Block the request
         }
     },
