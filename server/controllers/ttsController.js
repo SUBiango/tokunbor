@@ -19,7 +19,7 @@ const convertTTS = asyncHandler(async (req, res) => {
 })
 
 // @desc Get list of voices
-// @route GET /api/tts/convert
+// @route GET /api/tts/voices
 // @access Private
 
 const listVoices = asyncHandler(async (req, res) => {

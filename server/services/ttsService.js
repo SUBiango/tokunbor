@@ -1,9 +1,29 @@
 const textToSpeech = require('@google-cloud/text-to-speech');
 const fs = require('fs');
 const util = require('util');
+const path = require('path');
 
 // Create a client 
-const client = new textToSpeech.TextToSpeechClient();
+
+let client
+
+try {
+  if (process.env.NODE_ENV === 'production') {
+    // In production, read credentials from encoded.txt
+    const encodedCreds = fs.readFileSync('./config/encoded.txt', 'utf8');
+    const credentials = JSON.parse(Buffer.from(encodedCreds, 'base64').toString());
+    client = new textToSpeech.TextToSpeechClient({
+      credentials: credentials
+    });
+  } else {
+    // In development, use local key.json
+    client = new textToSpeech.TextToSpeechClient();
+  }
+} catch (error) {
+  console.error('Error initializing Text-to-Speech client:', error);
+  throw new Error(`Failed to initialize Text-to-Speech service: ${error.message}`);
+}
+
 
 
 /**
