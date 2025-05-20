@@ -3,52 +3,62 @@ const fs = require('fs');
 const util = require('util');
 const path = require('path');
 
-// Create a client 
-
-let client
-
-try {
-  if (process.env.NODE_ENV === 'production') {
-    // In production, read credentials from encoded.txt
-    const encodedCreds = fs.readFileSync('./config/encoded.txt', 'utf8');
-    const credentials = JSON.parse(Buffer.from(encodedCreds, 'base64').toString());
-    client = new textToSpeech.TextToSpeechClient({
-      credentials: credentials
-    });
-  } else {
-    // In development, use local key.json
-    client = new textToSpeech.TextToSpeechClient();
-  }
-} catch (error) {
-  console.error('Error initializing Text-to-Speech client:', error);
-  throw new Error(`Failed to initialize Text-to-Speech service: ${error.message}`);
-}
-
-
-
-/**
- * Converts text to speech using Google Cloud Text-to-Speech API.
- *
- * @param {string} text - The text to be converted into speech.
- * @param {string} language - The language code (e.g., 'en-US') for the desired voice.
- * @param {string} voice - The specific voice to be used for the conversion.
- * @param {number} speakingRate - The speaking rate for the voice. 
- * @returns {Promise<Buffer>} - A promise that resolves to the audio content in MP3 format.
- */
+let client = null;
 
 async function convertTextToSpeech(text, language, voice, speakingRate) {
-    const request = {
-        input: { text: text },
-        voice: { languageCode: language, name: voice },
-        audioConfig: { audioEncoding: 'MP3', speakingRate: speakingRate }
-    }
+  if (!client) {
+    throw new Error('Text-to-Speech client not initialized. Check GOOGLE_APPLICATION_CREDENTIALS_BASE64 environment variable.');
+  }
 
-    // Perform the text-to-speech request
-    const [response] = await client.synthesizeSpeech(request)
+  const request = {
+    input: { text: text },
+    voice: { languageCode: language, name: voice },
+    audioConfig: { audioEncoding: 'MP3', speakingRate: speakingRate }
+  };
 
+  // Perform the text-to-speech request
+  const [response] = await client.synthesizeSpeech(request);
 
-    // Return audio content 
-    return response.audioContent
+  // Return audio content 
+  return response.audioContent;
 }
 
-module.exports = { convertTextToSpeech }
+// Initialize the client if credentials are available
+const base64Credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS_BASE64;
+
+if (base64Credentials) {
+  try {
+    const decodedCredentials = Buffer.from(base64Credentials, 'base64').toString('utf-8');
+    const credentialsObject = JSON.parse(decodedCredentials);
+
+    // Create a temporary file to store the credentials
+    const tempCredentialsPath = path.join(__dirname, 'google-credentials.json');
+    fs.writeFileSync(tempCredentialsPath, JSON.stringify(credentialsObject));
+
+    // Set the GOOGLE_APPLICATION_CREDENTIALS environment variable
+    process.env.GOOGLE_APPLICATION_CREDENTIALS = tempCredentialsPath;
+    
+    console.log('Google Application Credentials loaded from environment variable');
+
+    // Initialize the Text-to-Speech client
+    client = new textToSpeech.TextToSpeechClient();
+
+    // Clean up the temporary credentials file
+    process.on('exit', () => {
+      fs.unlink(tempCredentialsPath, (err) => {
+        if (err) {
+          console.error('Error deleting temporary credentials file:', err);
+        } else {
+          console.log('Temporary credentials file deleted');
+        }
+      });
+    });
+
+  } catch (error) {
+    console.error('Error processing Google Application Credentials from environment variable:', error);
+  }
+} else {
+  console.warn('GOOGLE_APPLICATION_CREDENTIALS_BASE64 environment variable not set.');
+}
+
+module.exports = { convertTextToSpeech };
